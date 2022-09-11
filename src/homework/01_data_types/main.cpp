@@ -16,10 +16,10 @@ int main()
 
 	cin >> num;
 	result = multiply_numbers(num);
-	cout << result;
+	cout << result << "\n";
 
 	num1 = 4;
 	result = multiply_numbers(num1);
-	cout << result;
+	cout << result << "\n";
 	return 0;
 };
