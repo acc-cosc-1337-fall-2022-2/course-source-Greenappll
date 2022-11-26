@@ -16,3 +16,15 @@ TEST_CASE("factorial 2"){
 TEST_CASE("factorial 3"){
 	REQUIRE(factorial(6) == 720);
 }
+
+TEST_CASE("gcd 1"){
+	REQUIRE(gcd(5, 15) == 5);
+}
+
+TEST_CASE("gcd 2"){
+	REQUIRE(gcd(21, 28) == 7);
+}
+
+TEST_CASE("gcd 3"){
+	REQUIRE(gcd(25, 100) == 25);
+}
