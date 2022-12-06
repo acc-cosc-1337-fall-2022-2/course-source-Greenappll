@@ -9,41 +9,41 @@ using std::make_unique;
 using std::cin;
 int main() 
 {
-	TicTacToeManager manager;//instantiate manager outside loops...
+	TicTacToeData data;
+	TicTacToeManager manager(data);
 	LOOP: string player_choice;
 	std::cout<<"do you want to play tictactoe 3 or 4? press 3 for tictactoe 3 and 4 for tictactoe 4: ";
 	int player_choice0;
 	cin>>player_choice0;
 	unique_ptr<TicTacToe> game;
-	//unique_ptr<TicTacToe> game=make_unique<TicTacToe3>();
+	
 	
 	if(player_choice0==3)
-		game=make_unique<TicTacToe3>();// instantiate
+		game=make_unique<TicTacToe3>();
 	else if(player_choice0==4)
-		game=make_unique<TicTacToe4>();// instantiate
+		game=make_unique<TicTacToe4>();
 	else
 	{
 		goto LOOP;
 	}
 	
-	//cannot be in overload. this cin is necessary to instantiate TicTacToe game class .
-	std::cout<<"\n First Player! Please Enter (Capital) X or O:\t";//instructions specify capital  X or O not lowercase x or o, so I only allow those.
-	std::cin>>player_choice;//cannot be in overload. this cin is necessary to instantiate TicTacToe game class .
-	//std::cin.clear();
 	
-	if(player_choice!="X"&&player_choice!="O")//instructions say argument value must be X or O, so I Loop if not X or O.
+	std::cout<<"\n First Player! Please Enter (Capital) X or O:\t";
+	std::cin>>player_choice;
+
+	
+	if(player_choice!="X"&&player_choice!="O")
 		{
 			std::cout<<"Enter (Capital) X or O to continue";
 			goto LOOP;
 		}
 
 	game->start_game(player_choice);
-	//auto var= pegs[1];
-	do //inner loop for marking board
+	do 
 	{	
-		// take position and display board with overloaded operator.
-		std::cin>>*game;//overloaded cin game
-		std::cout<<*game;//overload cout game.
+		
+		std::cin>>*game;
+		std::cout<<*game;
 		if (game->game_over()==true)
 			{
 				string final_victor= game->get_winner();
@@ -51,7 +51,7 @@ int main()
 			}
 	}
 	while(game->game_over()==false);
-	manager.save_game(game);//trying to dereference with * here causes error. I assume because save_game takes reference to unique_pointer
+	manager.save_game(game);
 	std::cout<<"\nGame Over\n";
 	int x_win;
 	int o_win;
@@ -61,9 +61,9 @@ int main()
 	string continue_check;
 	std::cout<<"\nDo you want to continue or exit? If you want to continue enter (Capital) Y. Enter any other key to exit:\t";
 	std::cin>>continue_check;
-	if(continue_check=="Y")//if input ==Y, control will go to beginning, clear board and begin game again.
+	if(continue_check=="Y")
 		goto LOOP;
-	std::cout<<manager;//manager overload ostream cout.
+	std::cout<<manager;
 	
 	int x_wins;
 	int o_wins;

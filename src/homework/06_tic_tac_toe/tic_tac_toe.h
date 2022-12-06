@@ -1,4 +1,3 @@
-//h
 #include <string>
 #include <vector>
 using std::string;
@@ -10,6 +9,7 @@ class TicTacToe
    
  public:
    TicTacToe(){}
+   TicTacToe(std::vector<string>p,string win){pegs=p;winner=win;}
    TicTacToe(int size):pegs(size*size," "){}
    friend std::ostream& operator<<(std::ostream& out, const TicTacToe& game);
    friend std::istream& operator>>(std::istream& in, TicTacToe& game);
@@ -18,7 +18,9 @@ class TicTacToe
    void mark_board(int position);
    string get_player()const;
    string get_winner();
-   void set_winner();//don't know why, uml said this should be public
+   void set_winner();
+  vector<string> get_pegs()const{return pegs;}
+ 
  protected:
    vector<string> pegs;
    virtual bool check_column_win();
